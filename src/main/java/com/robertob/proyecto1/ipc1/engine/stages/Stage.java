@@ -47,10 +47,11 @@ public class Stage {
         
         switch (direction) {
             case "Arriba":
-                // guardamos la seccion a la que se quiere mover para comprobarla
-                nextSection = map[playerPosX-spaces][playerPosY];
-                // comprobamos si el vehiculo es un avion
+                
                 try {
+                    // guardamos la seccion a la que se quiere mover para comprobarla
+                    nextSection = map[playerPosX-spaces][playerPosY];
+                    // comprobamos si el vehiculo es un avion
                     if (oldPlayerSection.getPlayer().getCurrentVehicle() instanceof Plane){
                         // comprobamos si la seccion a moverse es montaña
                         if (nextSection instanceof MountainSection) {
@@ -77,42 +78,10 @@ public class Stage {
                 }
                 break;
             case "Abajo":
-                
-                // guardamos la seccion a la que se quiere mover para comprobarla
-                nextSection = map[playerPosX][playerPosY-spaces];
-                // comprobamos si el vehiculo es un avion
                 try {
-                    if (oldPlayerSection.getPlayer().getCurrentVehicle() instanceof Plane){
-                        // comprobamos si la seccion a moverse es montaña
-                        if (nextSection instanceof MountainSection) {
-                            System.out.println("cant move here: mountain");
-                        } else {
-                            oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
-                            map[playerPosX][playerPosY-spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
-                            map[playerPosX][playerPosY] = oldUnderSection; // en la casilla vieja la regresamos al tipo que era
-                            this.playerPosY -= spaces;
-                        }
-                    } else { // en caso sea un tanque:
-                        if (nextSection instanceof MountainSection || nextSection instanceof WaterSection) {
-                            System.out.println("cant move here: mountain or water");
-                        } else {
-                            oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
-                            map[playerPosX][playerPosY-spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
-                            map[playerPosX][playerPosY] = oldUnderSection; // en la casilla vieja la regresamos al tipo que era
-                            this.playerPosY -= spaces;
-                        }
-                    }
-                    break;
-                } catch (Exception e) {
-                    System.out.println("cant move outside map");
-                }
-                
-            case "Derecha":
-                
                 // guardamos la seccion a la que se quiere mover para comprobarla
                 nextSection = map[playerPosX+spaces][playerPosY];
                 // comprobamos si el vehiculo es un avion
-                try {
                     if (oldPlayerSection.getPlayer().getCurrentVehicle() instanceof Plane){
                         // comprobamos si la seccion a moverse es montaña
                         if (nextSection instanceof MountainSection) {
@@ -138,21 +107,20 @@ public class Stage {
                     System.out.println("cant move outside map");
                 }
                 break;
-            case "Izquierda":
-                
-                // guardamos la seccion a la que se quiere mover para comprobarla
-                nextSection = map[playerPosX-spaces][playerPosY];
-                // comprobamos si el vehiculo es un avion
+            case "Derecha":
                 try {
+                    // guardamos la seccion a la que se quiere mover para comprobarla
+                    nextSection = map[playerPosX][playerPosY+spaces];
+                    // comprobamos si el vehiculo es un avion
                     if (oldPlayerSection.getPlayer().getCurrentVehicle() instanceof Plane){
                         // comprobamos si la seccion a moverse es montaña
                         if (nextSection instanceof MountainSection) {
                             System.out.println("cant move here: mountain");
                         } else {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
-                            map[playerPosX-spaces][playerPosY] = oldPlayerSection; //movemos al jugador a la nueva posicion
+                            map[playerPosX][playerPosY+spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
                             map[playerPosX][playerPosY] = oldUnderSection; // en la casilla vieja la regresamos al tipo que era
-                            this.playerPosX -= spaces;
+                            this.playerPosY += spaces;
                         }
                     } else { // en caso sea un tanque:
                         if (nextSection instanceof MountainSection || nextSection instanceof WaterSection) {
@@ -161,7 +129,37 @@ public class Stage {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
                             map[playerPosX][playerPosY+spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
                             map[playerPosX][playerPosY] = oldUnderSection; // en la casilla vieja la regresamos al tipo que era
-                            this.playerPosX -= spaces;
+                            this.playerPosY += spaces;
+                        }
+                    }
+                    
+                } catch (Exception e) {
+                    System.out.println("cant move outside map");
+                }
+                break;
+            case "Izquierda":
+                try {
+                    // guardamos la seccion a la que se quiere mover para comprobarla
+                    nextSection = map[playerPosX][playerPosY-spaces];
+                    // comprobamos si el vehiculo es un avion
+                    if (oldPlayerSection.getPlayer().getCurrentVehicle() instanceof Plane){
+                        // comprobamos si la seccion a moverse es montaña
+                        if (nextSection instanceof MountainSection) {
+                            System.out.println("cant move here: mountain");
+                        } else {
+                            oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
+                            map[playerPosX][playerPosY-spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
+                            map[playerPosX][playerPosY] = oldUnderSection; // en la casilla vieja la regresamos al tipo que era
+                            this.playerPosY -= spaces;
+                        }
+                    } else { // en caso sea un tanque:
+                        if (nextSection instanceof MountainSection || nextSection instanceof WaterSection) {
+                            System.out.println("cant move here: mountain or water");
+                        } else {
+                            oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
+                            map[playerPosX][playerPosY-spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
+                            map[playerPosX][playerPosY] = oldUnderSection; // en la casilla vieja la regresamos al tipo que era
+                            this.playerPosY -= spaces;
                         }
                     }
                     
