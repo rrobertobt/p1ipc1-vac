@@ -8,6 +8,7 @@ import com.robertob.proyecto1.ipc1.engine.GameEngine;
 import com.robertob.proyecto1.ipc1.engine.vehicles.*;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,15 +18,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     GameEngine gameEngine;
     GameFrame gameFrame;
+    StoreFrame storeFrame;
     String[] confirmationOptions = {"Si","No"};
     DefaultListModel vehiclesListModel = new DefaultListModel();
     Vehicle selectedVehicle;
+    int vehicleCount;
     
     public MainFrame(GameEngine gameEngine) {
         initComponents();
         this.gameEngine = gameEngine;
         playerNicknameLbl.setText(gameEngine.getPlayer().getNickname().toUpperCase()+"?");
         gameFrame = new GameFrame(gameEngine);
+        storeFrame = new StoreFrame(gameEngine, this);
     }
 
     public void updateVehiclesList(){
@@ -36,6 +40,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
         this.vehicleList.setModel(vehiclesListModel);
+        vehicleCount = this.vehicleList.getModel().getSize();
+    }
+
+    public int getVehicleCount() {
+        return vehicleCount;
     }
     
     
@@ -80,6 +89,10 @@ public class MainFrame extends javax.swing.JFrame {
         storeButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         startGameButton = new javax.swing.JButton();
+        stateLbl = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -274,12 +287,29 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        stateLbl.setFont(new java.awt.Font("Open Sans", 3, 18)); // NOI18N
+
+        jMenu1.setText("Juego");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/robertob/proyecto1-ipc1/images/exitIconSymBlack.png"))); // NOI18N
+        jMenuItem1.setText("Salir del juego");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,21 +330,26 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addComponent(vehicleTypeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(vehiclePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(28, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(vehiclePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(37, 37, 37)
+                                                .addComponent(stateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(storeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(startGameButton)
-                        .addGap(58, 58, 58))))
+                        .addGap(59, 59, 59))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playerNicknameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(readyForBattleTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -330,15 +365,18 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(vehiclePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(vehiclePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(23, 23, 23)
                         .addComponent(storeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(startGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
+                .addGap(35, 35, 35))
         );
 
         pack();
@@ -350,20 +388,27 @@ public class MainFrame extends javax.swing.JFrame {
             gameEngine.getPlayer().setCurrentVehicle(selectedVehicle);
             setStatsText(selectedVehicle);
             
-            //enableBtns
         } catch (ArrayIndexOutOfBoundsException aioobe) {
             System.out.println("No hay vehiculo seleccionado");
         }
     }//GEN-LAST:event_vehicleListMouseClicked
 
     private void storeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeButtonActionPerformed
-        // TODO add your handling code here:
+        storeFrame.updateVehiclesStoreList();
+        storeFrame.setVisible(true);
     }//GEN-LAST:event_storeButtonActionPerformed
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
         gameFrame.stageViewController.paintPanel();
         gameFrame.setVisible(true);
     }//GEN-LAST:event_startGameButtonActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        int confirmation = JOptionPane.showOptionDialog(this, "¿Estas seguro que quieres salir del juego?", "Confirmacion",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,confirmationOptions,confirmationOptions[0]);
+            if(confirmation == JOptionPane.YES_OPTION){
+                System.exit(0);
+            }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void setStatsText(Vehicle vehicle){
         nameLbl.setText(vehicle.getName());
@@ -374,10 +419,18 @@ public class MainFrame extends javax.swing.JFrame {
         attackLbl.setText(String.valueOf(vehicle.getAttack()));
         defenseLbl.setText(String.valueOf(vehicle.getDefense()));
         aimLbl.setText(String.valueOf(vehicle.getAim()));
+        weaponALbl.setText(vehicle.getWeapon1().getType());
+        weaponBLbl.setText(vehicle.getWeapon2().getType());
         
         if(vehicle instanceof Tank) {
             vehicleTypeLbl.setText("TANQUE");
         } else {vehicleTypeLbl.setText("AVIÓN");}
+        
+        if(vehicle.isDestroyed()){
+            stateLbl.setText("DESTRUIDO");
+        } else {
+            stateLbl.setText("ACTIVO");
+        }
         
         vehiclePicture.setIcon(new ImageIcon(vehicle.getImage()));
     }
@@ -399,6 +452,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlabel18;
@@ -408,6 +464,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel ppLbl;
     private javax.swing.JLabel readyForBattleTitle;
     private javax.swing.JButton startGameButton;
+    private javax.swing.JLabel stateLbl;
     private javax.swing.JButton storeButton;
     private javax.swing.JList<String> vehicleList;
     private javax.swing.JLabel vehiclePicture;
@@ -417,3 +474,4 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel xpLbl;
     // End of variables declaration//GEN-END:variables
 }
+

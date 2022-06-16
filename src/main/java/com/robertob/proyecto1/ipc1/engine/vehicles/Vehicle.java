@@ -22,6 +22,7 @@ public abstract class Vehicle {
     private int xp;
     private Weapon weapon1;
     private Weapon weapon2;
+    private boolean isDestroyed;
 
     public Vehicle(String name, int attack, int defense, int aim, Weapon weapon1, Weapon weapon2) {
         this.name = name;
@@ -34,6 +35,7 @@ public abstract class Vehicle {
         this.aim = aim;
         this.weapon1 = weapon1;
         this.weapon2 = weapon2;
+        this.isDestroyed = false;
     }
 
     public String getName() {
@@ -74,6 +76,22 @@ public abstract class Vehicle {
 
     public Weapon getWeapon2() {
         return weapon2;
+    }
+
+    public void setWeapon1(Weapon weapon1) {
+        this.weapon1 = weapon1;
+    }
+
+    public void setWeapon2(Weapon weapon2) {
+        this.weapon2 = weapon2;
+    }
+    
+    public boolean isDestroyed(){
+        return isDestroyed;
+    }
+    
+    public void setDestroyed(){
+        isDestroyed = true;
     }
     
     public abstract String getImage();

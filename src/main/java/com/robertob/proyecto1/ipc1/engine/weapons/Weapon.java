@@ -10,16 +10,34 @@ package com.robertob.proyecto1.ipc1.engine.weapons;
  */
 public abstract class Weapon {
     
-    int attackMod;
-    int aimMod;
-    int speedMod;
-    int ammo;
+    private int attackMod;
+    private int aimMod;
+    private int speedMod;
+    private String type;
     
-    public Weapon(int attackMod, int aimMod, int speedMod) {
+    public Weapon(int attackMod, int aimMod, int speedMod, String type) {
         this.attackMod = attackMod;
         this.aimMod = aimMod;
         this.speedMod = speedMod;
+        this.type = type;
     }
+
+    public int getAttackMod() {
+        return attackMod;
+    }
+
+    public int getAimMod() {
+        return aimMod;
+    }
+
+    public int getSpeedMod() {
+        return speedMod;
+    }
+
+    public String getType() {
+        return type;
+    }
+    
     
     
     

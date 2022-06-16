@@ -11,7 +11,7 @@ package com.robertob.proyecto1.ipc1.engine.weapons;
 public class MachineGun extends Weapon{
 
     public MachineGun() {
-        super(3, -10, 15);
+        super(3, -10, 15, "Ametralladora");
     }
     
     

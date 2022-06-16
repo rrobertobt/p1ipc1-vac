@@ -11,7 +11,7 @@ package com.robertob.proyecto1.ipc1.engine.weapons;
 public class Canon extends Weapon{
 
     public Canon() {
-        super(20, 0, -15);
+        super(20, 0, -15, "Cañon");
     }
     
     

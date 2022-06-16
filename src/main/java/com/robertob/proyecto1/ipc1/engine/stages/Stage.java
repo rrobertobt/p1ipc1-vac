@@ -4,6 +4,7 @@
  */
 package com.robertob.proyecto1.ipc1.engine.stages;
 import com.robertob.proyecto1.ipc1.engine.vehicles.*;
+import javax.swing.JOptionPane;
 
 
 public class Stage {
@@ -56,6 +57,7 @@ public class Stage {
                         // comprobamos si la seccion a moverse es montaña
                         if (nextSection instanceof MountainSection) {
                             System.out.println("cant move here: mountain");
+                            JOptionPane.showMessageDialog(null, "No puedes moverte a esta sección del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                         } else {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
                             map[playerPosX-spaces][playerPosY] = oldPlayerSection; //movemos al jugador a la nueva posicion
@@ -65,6 +67,7 @@ public class Stage {
                     } else { // en caso sea un tanque:
                         if (nextSection instanceof MountainSection || nextSection instanceof WaterSection) {
                             System.out.println("cant move here: mountain or water");
+                            JOptionPane.showMessageDialog(null, "No puedes moverte a esta sección del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                         } else {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
                             map[playerPosX-spaces][playerPosY] = oldPlayerSection; //movemos al jugador a la nueva posicion
@@ -75,6 +78,7 @@ public class Stage {
                     
                 } catch (Exception e) {
                     System.out.println("cant move outside map");
+                    JOptionPane.showMessageDialog(null, "No puedes fuera del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                 }
                 break;
             case "Abajo":
@@ -86,6 +90,7 @@ public class Stage {
                         // comprobamos si la seccion a moverse es montaña
                         if (nextSection instanceof MountainSection) {
                             System.out.println("cant move here: mountain");
+                            JOptionPane.showMessageDialog(null, "No puedes moverte a esta sección del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                         } else {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
                             map[playerPosX+spaces][playerPosY] = oldPlayerSection; //movemos al jugador a la nueva posicion
@@ -95,6 +100,7 @@ public class Stage {
                     } else { // en caso sea un tanque:
                         if (nextSection instanceof MountainSection || nextSection instanceof WaterSection) {
                             System.out.println("cant move here: mountain or water");
+                            JOptionPane.showMessageDialog(null, "No puedes moverte a esta sección del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                         } else {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
                             map[playerPosX+spaces][playerPosY] = oldPlayerSection; //movemos al jugador a la nueva posicion
@@ -105,6 +111,7 @@ public class Stage {
                     
                 } catch (Exception e) {
                     System.out.println("cant move outside map");
+                    JOptionPane.showMessageDialog(null, "No puedes moverte fuera del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                 }
                 break;
             case "Derecha":
@@ -116,6 +123,7 @@ public class Stage {
                         // comprobamos si la seccion a moverse es montaña
                         if (nextSection instanceof MountainSection) {
                             System.out.println("cant move here: mountain");
+                            JOptionPane.showMessageDialog(null, "No puedes moverte a esta sección del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                         } else {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
                             map[playerPosX][playerPosY+spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
@@ -125,6 +133,7 @@ public class Stage {
                     } else { // en caso sea un tanque:
                         if (nextSection instanceof MountainSection || nextSection instanceof WaterSection) {
                             System.out.println("cant move here: mountain or water");
+                            JOptionPane.showMessageDialog(null, "No puedes moverte a esta sección del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                         } else {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
                             map[playerPosX][playerPosY+spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
@@ -135,6 +144,7 @@ public class Stage {
                     
                 } catch (Exception e) {
                     System.out.println("cant move outside map");
+                    JOptionPane.showMessageDialog(null, "No puedes moverte fuera del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                 }
                 break;
             case "Izquierda":
@@ -146,6 +156,7 @@ public class Stage {
                         // comprobamos si la seccion a moverse es montaña
                         if (nextSection instanceof MountainSection) {
                             System.out.println("cant move here: mountain");
+                            JOptionPane.showMessageDialog(null, "No puedes moverte a esta sección del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                         } else {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
                             map[playerPosX][playerPosY-spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
@@ -155,6 +166,7 @@ public class Stage {
                     } else { // en caso sea un tanque:
                         if (nextSection instanceof MountainSection || nextSection instanceof WaterSection) {
                             System.out.println("cant move here: mountain or water");
+                            JOptionPane.showMessageDialog(null, "No puedes moverte a esta sección del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                         } else {
                             oldPlayerSection.setUnderSection(nextSection); // asignamos la casilla sobre la que se pondra el jugador a el
                             map[playerPosX][playerPosY-spaces] = oldPlayerSection; //movemos al jugador a la nueva posicion
@@ -165,6 +177,7 @@ public class Stage {
                     
                 } catch (Exception e) {
                     System.out.println("cant move outside map");
+                    JOptionPane.showMessageDialog(null, "No puedes moverte fuera del mapa!","Movimiento prohibido",JOptionPane.ERROR_MESSAGE);
                 }
                 break;
             default:

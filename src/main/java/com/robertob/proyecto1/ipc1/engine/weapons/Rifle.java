@@ -11,7 +11,7 @@ package com.robertob.proyecto1.ipc1.engine.weapons;
 public class Rifle extends Weapon{
 
     public Rifle() {
-        super(5, 5, 10);
+        super(5, 5, 10, "Rifle");
     }
     
 }

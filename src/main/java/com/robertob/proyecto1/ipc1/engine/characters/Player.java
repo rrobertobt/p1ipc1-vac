@@ -14,6 +14,12 @@ public class Player {
     private String nickname;
     private Vehicle[] vehicles = new Vehicle[3];
     private Vehicle currentVehicle;
+    private int gold;
+
+    public Player() {
+        this.gold = 1000;
+        
+    }
     
     public String getNickname() {
         return nickname;
@@ -44,9 +50,14 @@ public class Player {
     public void setCurrentVehicle(Vehicle currentVehicle) {
         this.currentVehicle = currentVehicle;
     }
-    
-    
-    
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
     
     // TESTING
     public void showAllVehicles(){
