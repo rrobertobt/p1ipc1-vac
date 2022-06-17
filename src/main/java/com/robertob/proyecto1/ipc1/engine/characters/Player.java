@@ -59,6 +59,15 @@ public class Player {
         this.gold = gold;
     }
     
+    public boolean hasDestroyedVehicles(){
+        for (int i = 0; i < vehicles.length; i++) {
+            if (vehicles[i].isDestroyed()){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     // TESTING
     public void showAllVehicles(){
         

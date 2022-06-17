@@ -201,12 +201,13 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(xpLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(attackLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(defenseLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(aimLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(aimLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(weaponALbl, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(weaponBLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(weaponBLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +421,13 @@ public class MainFrame extends javax.swing.JFrame {
         defenseLbl.setText(String.valueOf(vehicle.getDefense()));
         aimLbl.setText(String.valueOf(vehicle.getAim()));
         weaponALbl.setText(vehicle.getWeapon1().getType());
-        weaponBLbl.setText(vehicle.getWeapon2().getType());
+        
+        if (vehicle.getWeapon2() == null){
+            weaponBLbl.setText("Sin segunda arma");
+        } else {
+            weaponBLbl.setText(vehicle.getWeapon2().getType());
+        }
+        
         
         if(vehicle instanceof Tank) {
             vehicleTypeLbl.setText("TANQUE");

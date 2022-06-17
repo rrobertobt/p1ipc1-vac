@@ -29,6 +29,7 @@ public class StoreFrame extends javax.swing.JFrame {
         initComponents();
         this.gameEngine = gameEngine; 
         this.mainFrame = mainFrame;
+        updateWeaponImpact();
     }
 
     public void updateVehiclesStoreList(){
@@ -67,7 +68,7 @@ public class StoreFrame extends javax.swing.JFrame {
         buyVehicleButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        weaponComboBox = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -232,8 +233,13 @@ public class StoreFrame extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Noto Sans", 1, 20)); // NOI18N
         jLabel9.setText("¿VEHICULO?");
 
-        jComboBox1.setFont(new java.awt.Font("Open Sans", 0, 21)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cañon", "Ametralladora", "Rifle" }));
+        weaponComboBox.setFont(new java.awt.Font("Open Sans", 0, 21)); // NOI18N
+        weaponComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cañon", "Ametralladora", "Rifle" }));
+        weaponComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                weaponComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Noto Sans", 1, 20)); // NOI18N
         jLabel10.setText("IMPACTO");
@@ -312,7 +318,7 @@ public class StoreFrame extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jComboBox1, 0, 0, Short.MAX_VALUE))
+                            .addComponent(weaponComboBox, 0, 0, Short.MAX_VALUE))
                         .addGap(66, 66, 66)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,7 +344,7 @@ public class StoreFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(weaponComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -456,7 +462,7 @@ public class StoreFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buyVehicleButtonActionPerformed
 
     private void buyWeaponButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyWeaponButtonActionPerformed
-        int selectedWeaponIndex = vehicleList.getSelectedIndex();
+        int selectedWeaponIndex = weaponComboBox.getSelectedIndex();
         
         switch (selectedWeaponIndex) {
             case 0:
@@ -478,6 +484,10 @@ public class StoreFrame extends javax.swing.JFrame {
         selectedVehicle = gameEngine.getPlayer().getVehicleIndex(vehicleList.getSelectedIndex());
     }//GEN-LAST:event_vehicleListMouseClicked
 
+    private void weaponComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weaponComboBoxActionPerformed
+        updateWeaponImpact();
+    }//GEN-LAST:event_weaponComboBoxActionPerformed
+
     private void tryEnableBuyVehicleBtn(){
         if((TankVehicleToggleBtn.isSelected() || AirVehicleToggleBtn.isSelected()) && !vehicleNameTextField.getText().equals("")) {
             System.out.println("(TEST) Trying to enable button...");
@@ -494,6 +504,32 @@ public class StoreFrame extends javax.swing.JFrame {
         }
     }
 
+    private void updateWeaponImpact(){
+        int selectedWeaponIndex = weaponComboBox.getSelectedIndex();
+        
+        switch (selectedWeaponIndex) {
+            case 0:
+                atackLbl.setText("20");
+                aimLbl.setText("0");
+                speedLbl.setText("-15");
+                break;
+            case 1:
+                atackLbl.setText("3");
+                aimLbl.setText("-10");
+                speedLbl.setText("15");
+                break;
+            case 2:
+                atackLbl.setText("5");
+                aimLbl.setText("5");
+                speedLbl.setText("10 ");
+                break;
+            default:
+                throw new AssertionError();
+        }
+        
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton AirVehicleToggleBtn;
     private javax.swing.JToggleButton TankVehicleToggleBtn;
@@ -502,7 +538,6 @@ public class StoreFrame extends javax.swing.JFrame {
     private javax.swing.JButton buyVehicleButton;
     private javax.swing.JButton buyWeaponButton;
     private javax.swing.JButton exitStoreButton;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -526,5 +561,6 @@ public class StoreFrame extends javax.swing.JFrame {
     private javax.swing.JLabel speedLbl;
     private javax.swing.JList<String> vehicleList;
     private javax.swing.JTextField vehicleNameTextField;
+    private javax.swing.JComboBox<String> weaponComboBox;
     // End of variables declaration//GEN-END:variables
 }
