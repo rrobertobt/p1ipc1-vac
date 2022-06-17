@@ -4,17 +4,29 @@
  */
 package com.robertob.proyecto1.ipc1.frames;
 
+import com.robertob.proyecto1.ipc1.engine.GameEngine;
+import com.robertob.proyecto1.ipc1.engine.stages.*;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author robertob
  */
 public class MapSelectorFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MapSelectorFrame
-     */
-    public MapSelectorFrame() {
+    GameEngine gameEngine;
+    GameFrame gameFrame;
+    int selectedMapIndex;
+    String[] preveiwImages = new String[]{
+        "src/main/resources/com/robertob/proyecto1-ipc1/images/map6Preview.png",
+        "src/main/resources/com/robertob/proyecto1-ipc1/images/map10Preview.png",
+        "src/main/resources/com/robertob/proyecto1-ipc1/images/map15Preview.png"
+    };
+    
+    public MapSelectorFrame(GameEngine gameEngine) {
         initComponents();
+        this.gameEngine = gameEngine;
+        gameFrame = new GameFrame(gameEngine);
     }
 
     /**
@@ -28,29 +40,33 @@ public class MapSelectorFrame extends javax.swing.JFrame {
 
         whichMapTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
+        mapList = new javax.swing.JList<>();
+        mapPreviewLbl = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        continueVehicleBtn2 = new javax.swing.JButton();
+        continueMapBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         whichMapTitle.setFont(new java.awt.Font("Noto Sans", 1, 22)); // NOI18N
         whichMapTitle.setText("¿EN QUE ESCENARIO QUIERES JUGAR?");
 
-        jList1.setBackground(new java.awt.Color(238, 238, 238));
-        jList1.setFont(new java.awt.Font("Noto Sans", 0, 20)); // NOI18N
-        jList1.setForeground(new java.awt.Color(0, 0, 0));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Mapa 1 (6x6)", "Mapa 2 (10x10)", "Mapa 3 (15x15)", "Escenario aleatorio (6x6)", "Escenario aleatorio (10x10)", "Escenario aleatorio (15x15)" };
+        mapList.setBackground(new java.awt.Color(238, 238, 238));
+        mapList.setFont(new java.awt.Font("Noto Sans", 0, 19)); // NOI18N
+        mapList.setForeground(new java.awt.Color(0, 0, 0));
+        mapList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Mapa 1 (6x6)", "Mapa 2 (10x10)", "Mapa 3 (15x15)", "*Sin funcionamiento Escenario aleatorio (6x6) ", "*Sin funcionamiento Escenario aleatorio (10x10)", "*Sin funcionamiento Escenario aleatorio (15x15)" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jScrollPane1.setViewportView(jList1);
+        mapList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mapList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mapListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(mapList);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/robertob/proyecto1-ipc1/images/map6Preview.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        mapPreviewLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/robertob/proyecto1-ipc1/images/map6Preview.png"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -59,17 +75,22 @@ public class MapSelectorFrame extends javax.swing.JFrame {
         jButton1.setText("¿QUE REPRESENTA CADA CUADRO?");
         jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        continueVehicleBtn2.setBackground(new java.awt.Color(0, 255, 204));
-        continueVehicleBtn2.setFont(new java.awt.Font("Noto Sans", 1, 19)); // NOI18N
-        continueVehicleBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/robertob/proyecto1-ipc1/images/playIcon.png"))); // NOI18N
-        continueVehicleBtn2.setText(" CONTINUAR");
-        continueVehicleBtn2.setBorderPainted(false);
-        continueVehicleBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        continueVehicleBtn2.setEnabled(false);
-        continueVehicleBtn2.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                continueVehicleBtn2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        continueMapBtn.setBackground(new java.awt.Color(0, 255, 204));
+        continueMapBtn.setFont(new java.awt.Font("Noto Sans", 1, 19)); // NOI18N
+        continueMapBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/robertob/proyecto1-ipc1/images/playIcon.png"))); // NOI18N
+        continueMapBtn.setText(" CONTINUAR");
+        continueMapBtn.setBorderPainted(false);
+        continueMapBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        continueMapBtn.setEnabled(false);
+        continueMapBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continueMapBtnActionPerformed(evt);
             }
         });
 
@@ -84,18 +105,16 @@ public class MapSelectorFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(whichMapTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mapPreviewLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))))
+                                .addGap(21, 21, 21))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(continueVehicleBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addGap(362, 362, 362)
+                        .addComponent(continueMapBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,30 +125,79 @@ public class MapSelectorFrame extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mapPreviewLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addGap(38, 38, 38)
-                .addComponent(continueVehicleBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(continueMapBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void continueVehicleBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueVehicleBtn2ActionPerformed
+    private void continueMapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueMapBtnActionPerformed
+        Stage stageToPlay;
         
-    }//GEN-LAST:event_continueVehicleBtn2ActionPerformed
+        switch (selectedMapIndex) {
+            case 0:
+                BaseStageA baseStageA = new BaseStageA(gameEngine.getPlayer());
+                stageToPlay = baseStageA;
+                gameFrame.setStage(stageToPlay);
+                break;
+            case 1:
+                BaseStageB baseStageB = new BaseStageB(gameEngine.getPlayer());
+                stageToPlay = baseStageB;
+                gameFrame.setStage(stageToPlay);
+                break;
+            case 2:
+                
+                break;
+            default:
+                throw new AssertionError();
+        }
+        gameFrame.setVisible(true);
+    }//GEN-LAST:event_continueMapBtnActionPerformed
 
+    private void mapListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapListMouseClicked
+        selectedMapIndex = mapList.getSelectedIndex();
+        tryEnableContinueMapButton();
+        updateMapPreview();
+    }//GEN-LAST:event_mapListMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new HelpFrame().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private void tryEnableContinueMapButton(){
+        if (!mapList.isSelectionEmpty()) {
+            continueMapBtn.setEnabled(true);
+        }
+    }
+    
+    private void updateMapPreview(){
+        switch (selectedMapIndex) {
+            case 0:
+                mapPreviewLbl.setIcon(new ImageIcon(preveiwImages[0]));
+                break;
+            case 1:
+                mapPreviewLbl.setIcon(new ImageIcon(preveiwImages[1]));
+                break;
+            case 2:
+                mapPreviewLbl.setIcon(new ImageIcon(preveiwImages[2]));
+                break;
+            default:
+                throw new AssertionError();
+        }
+    
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton continueVehicleBtn;
-    private javax.swing.JButton continueVehicleBtn1;
-    private javax.swing.JButton continueVehicleBtn2;
+    private javax.swing.JButton continueMapBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> mapList;
+    private javax.swing.JLabel mapPreviewLbl;
     private javax.swing.JLabel whichMapTitle;
     // End of variables declaration//GEN-END:variables
 }

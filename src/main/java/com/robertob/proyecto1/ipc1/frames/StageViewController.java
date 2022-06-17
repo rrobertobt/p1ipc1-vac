@@ -16,15 +16,15 @@ import javax.swing.JPanel;
  */
 public class StageViewController {
     
-    Stage stageToShow;
+    Section[][] stageToShow;
     JPanel displayPanel;
     JLabel[][] iconMatrix;
     int size;
 
-    public StageViewController(Stage stageToShow, JPanel displayPanel) {
+    public StageViewController(Section[][] stageToShow, JPanel displayPanel) {
         this.stageToShow = stageToShow;
         this.displayPanel = displayPanel;
-        this.size = stageToShow.getMap().length;
+        this.size = stageToShow.length;
     }
     
     public void paintPanel(){
@@ -35,7 +35,7 @@ public class StageViewController {
         int height = displayPanel.getHeight()/size;
         for (int i = 0; i < iconMatrix.length; i++) {
             for (int j = 0; j < iconMatrix[0].length; j++) {
-                JLabel newIcon = new JLabel(new ImageIcon(stageToShow.getMapOnIndexes(j, i).getImage(size)));
+                JLabel newIcon = new JLabel(new ImageIcon(stageToShow[j][i].getImage(size)));
                 newIcon.setBounds(width*i, height*j, width, height);
                 newIcon.setBorder(BorderFactory.createLineBorder(Color.gray, 1, false));
                 iconMatrix[i][j] = newIcon;

@@ -14,13 +14,14 @@ public class GameFrame extends javax.swing.JFrame {
 
     GameEngine gameEngine;
     StageViewController stageViewController;
-    BaseStageA baseStage;
+    Stage stageToPlay;
     
     public GameFrame(GameEngine gameEngine) {
         initComponents();
         this.gameEngine = gameEngine;
-        baseStage = new BaseStageA(gameEngine.getPlayer());
-        stageViewController = new StageViewController(baseStage, mapPanel);
+       // stageToPlay = new Stage(gameEngine.getPlayer());
+    //    stageToPlay.setBaseStageA();
+//        stageViewController = new StageViewController(stageToPlay.getMap(), mapPanel);
     }
 
     /**
@@ -101,6 +102,7 @@ public class GameFrame extends javax.swing.JFrame {
         jButton3.setText("ATACAR");
         jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 153, 0), 3, true));
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -149,6 +151,7 @@ public class GameFrame extends javax.swing.JFrame {
         jButton5.setText("CAMBIAR VEHICULO");
         jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 153, 0), 3, true));
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setEnabled(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -443,13 +446,21 @@ public class GameFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setStage(Stage stage){
+        this.stageToPlay = stage;
+        stageViewController = new StageViewController(stageToPlay.getMap(), mapPanel);
+        stageViewController.paintPanel();
+        
+    }
+    
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void moveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveBtnActionPerformed
         System.out.println(moveDirectionSelector.getSelectedItem());
-        baseStage.moveVehicle(moveDirectionSelector.getSelectedItem().toString(), Integer.parseInt(spacesTextBox.getText()));
+        stageToPlay.moveVehicle(moveDirectionSelector.getSelectedItem().toString(), Integer.parseInt(spacesTextBox.getText()));
         stageViewController.paintPanel();
     }//GEN-LAST:event_moveBtnActionPerformed
 

@@ -9,11 +9,13 @@ import com.robertob.proyecto1.ipc1.engine.characters.Player;
  *
  * @author robertob
  */
-public class BaseStageA extends Stage {
+public class BaseStageA extends Stage{
     
-    private Player currentPlayer;
-    
+    Player currentPlayer;
+
     public BaseStageA(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+        
         map = new Section[][]{
             {new PathSection(), new EnemySection(), new EnemySection(), new PathSection(), new PathSection(), new PathSection()},
             {new PathSection(), new PathSection(), new PathSection(), new PathSection(), new EnemySection(), new WaterSection()},
