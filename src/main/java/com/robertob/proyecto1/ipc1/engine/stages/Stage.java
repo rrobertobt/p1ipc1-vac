@@ -37,52 +37,7 @@ public class Stage {
 
     public int[][] getEnemiesPosXY() {
         return enemiesPosXY;
-    }
-
-//    public void setBaseStageA() {
-//        map = new Section[][]{
-//            {new PathSection(), new EnemySection(), new EnemySection(), new PathSection(), new PathSection(), new PathSection()},
-//            {new PathSection(), new PathSection(), new PathSection(), new PathSection(), new EnemySection(), new WaterSection()},
-//            {new MountainSection(), new PathSection(), new MountainSection(), new MountainSection(), new PathSection(), new WaterSection()},
-//            {new MountainSection(), new PathSection(), new MountainSection(), new MountainSection(), new PathSection(), new WaterSection()},
-//            {new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection()},
-//            {new PathSection(), new PathSection(), new PlayerSection(currentPlayer, new PathSection()), new PathSection(), new PathSection(), new PathSection(),},
-//        };
-//        playerPosX = 5;
-//        playerPosY = 2;
-//        enemiesPosXY = new int[][]{
-//            {0,1},
-//            {0,2},
-//            {1,4}
-//        };
-//    }
-//    
-//    public void setBaseStageB() {
-//        map = new Section[][]{
-//            {new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection()},
-//            {new PathSection(), new WaterSection(), new WaterSection(), new EnemySection(), new EnemySection(), new EnemySection(), new PathSection(), new WaterSection(), new WaterSection(), new PathSection()},
-//            {new PathSection(), new WaterSection(), new WaterSection(), new PathSection(), new PathSection(), new PathSection(),new PathSection(), new WaterSection(), new WaterSection(), new PathSection()},
-//            {new EnemySection(), new MountainSection(), new MountainSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new EnemySection()},
-//            {new PathSection(), new MountainSection(), new MountainSection(), new PathSection(), new PathSection(), new WaterSection(), new MountainSection(), new MountainSection(), new MountainSection(), new PathSection()},
-//            {new PathSection(), new MountainSection(), new MountainSection(), new PathSection(), new PathSection(), new WaterSection(), new MountainSection(), new MountainSection(), new MountainSection(), new PathSection()},
-//            {new PathSection(), new MountainSection(), new MountainSection(), new PathSection(), new PathSection(), new WaterSection(), new MountainSection(), new MountainSection(), new MountainSection(), new PathSection()},
-//            {new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new MountainSection(), new MountainSection(), new MountainSection(), new PathSection()},
-//            {new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection()},
-//            {new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PlayerSection(currentPlayer, new PathSection()), new PathSection(), new PathSection(), new PathSection(), new PathSection(), new PathSection()},
-//        };
-//        playerPosX = 9;
-//        playerPosY = 4;
-//        enemiesPosXY = new int[][]{
-//            {4,1},
-//            {2,4},
-//            {2,5},
-//            {2,6},
-//            {4,10},
-//        };
-//    }
-    
-    
-    
+    }    
    
     public void moveVehicle(String direction, int spaces){
         // guardando posicion actual del jugador y el tipo de casilla sobre la que esta, la casilla sobre la que esta, y a la que se quiere mover

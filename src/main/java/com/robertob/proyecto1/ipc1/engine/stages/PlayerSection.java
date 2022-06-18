@@ -42,10 +42,6 @@ public class PlayerSection extends Section{
         return player;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     public void setUnderSection(Section underSection) {
         this.underSection = underSection;
     }

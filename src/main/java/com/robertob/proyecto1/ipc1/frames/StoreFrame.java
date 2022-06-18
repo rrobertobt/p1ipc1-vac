@@ -464,19 +464,25 @@ public class StoreFrame extends javax.swing.JFrame {
     private void buyWeaponButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyWeaponButtonActionPerformed
         int selectedWeaponIndex = weaponComboBox.getSelectedIndex();
         
-        switch (selectedWeaponIndex) {
-            case 0:
-                selectedVehicle.setWeapon2(new Canon());
-                break;
-            case 1:
-                selectedVehicle.setWeapon2(new MachineGun());
-                break;
-            case 2:
-                selectedVehicle.setWeapon2(new Rifle());
-                break;
-            default:
-                throw new AssertionError();
+        if(selectedVehicle.getWeapon1() != null && selectedVehicle.getWeapon2() != null){
+            JOptionPane.showMessageDialog(this, "Ya no puedes agregar mas armas!","Armas llenos",JOptionPane.ERROR_MESSAGE);
+        } else {
+            switch (selectedWeaponIndex) {
+                case 0:
+                    selectedVehicle.setWeapon2(new Canon());
+                    break;
+                case 1:
+                    selectedVehicle.setWeapon2(new MachineGun());
+                    break;
+                case 2:
+                    selectedVehicle.setWeapon2(new Rifle());
+                    break;
+                default:
+                    throw new AssertionError();
+                }   
         }
+        
+        
     }//GEN-LAST:event_buyWeaponButtonActionPerformed
 
     private void vehicleListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vehicleListMouseClicked

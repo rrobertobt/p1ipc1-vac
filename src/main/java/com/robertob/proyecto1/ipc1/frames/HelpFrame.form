@@ -40,7 +40,7 @@
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -51,11 +51,10 @@
                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
@@ -105,9 +104,7 @@
                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -240,7 +237,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Open Sans" size="20" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="y no representan ningun obstaculo"/>
+        <Property name="text" type="java.lang.String" value="les dispares para destruirlas"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
@@ -248,7 +245,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Open Sans" size="20" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tu vehiculo puede estar en cualquiera de estas casillas "/>
+        <Property name="text" type="java.lang.String" value="Ningun vehiculo puede pasar por estas casillas a menos que"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
@@ -256,7 +253,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Open Sans" size="20" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="y no representan ningun obstaculo"/>
+        <Property name="text" type="java.lang.String" value="de tipo avi&#xf3;n pueden pasar sobre ellas"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
@@ -264,15 +261,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Open Sans" size="20" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tu vehiculo puede estar en cualquiera de estas casillas "/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel15">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Open Sans" size="20" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="y no representan ningun obstaculo"/>
+        <Property name="text" type="java.lang.String" value="Puedes disparar a traves de estas casillas, y solo los vehiculos"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">
@@ -280,7 +269,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Open Sans" size="20" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tu vehiculo puede estar en cualquiera de estas casillas "/>
+        <Property name="text" type="java.lang.String" value="Esta casilla representa un enemigo, quien intentar&#xe1; derrotarte"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

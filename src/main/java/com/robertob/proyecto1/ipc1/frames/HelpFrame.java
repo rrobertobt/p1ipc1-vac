@@ -41,7 +41,6 @@ public class HelpFrame extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -81,22 +80,19 @@ public class HelpFrame extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jLabel11.setFont(new java.awt.Font("Open Sans", 0, 20)); // NOI18N
-        jLabel11.setText("y no representan ningun obstaculo");
+        jLabel11.setText("les dispares para destruirlas");
 
         jLabel12.setFont(new java.awt.Font("Open Sans", 0, 20)); // NOI18N
-        jLabel12.setText("Tu vehiculo puede estar en cualquiera de estas casillas ");
+        jLabel12.setText("Ningun vehiculo puede pasar por estas casillas a menos que");
 
         jLabel13.setFont(new java.awt.Font("Open Sans", 0, 20)); // NOI18N
-        jLabel13.setText("y no representan ningun obstaculo");
+        jLabel13.setText("de tipo avión pueden pasar sobre ellas");
 
         jLabel14.setFont(new java.awt.Font("Open Sans", 0, 20)); // NOI18N
-        jLabel14.setText("Tu vehiculo puede estar en cualquiera de estas casillas ");
-
-        jLabel15.setFont(new java.awt.Font("Open Sans", 0, 20)); // NOI18N
-        jLabel15.setText("y no representan ningun obstaculo");
+        jLabel14.setText("Puedes disparar a traves de estas casillas, y solo los vehiculos");
 
         jLabel16.setFont(new java.awt.Font("Open Sans", 0, 20)); // NOI18N
-        jLabel16.setText("Tu vehiculo puede estar en cualquiera de estas casillas ");
+        jLabel16.setText("Esta casilla representa un enemigo, quien intentará derrotarte");
 
         jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setFont(new java.awt.Font("Open Sans", 1, 17)); // NOI18N
@@ -127,7 +123,7 @@ public class HelpFrame extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,9 +133,8 @@ public class HelpFrame extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabel14)
                             .addComponent(jLabel13)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel15))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                            .addComponent(jLabel16))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(17, 17, 17))
         );
@@ -184,9 +179,7 @@ public class HelpFrame extends javax.swing.JFrame {
                                         .addComponent(jLabel13)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel16)
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel15)
-                                        .addGap(10, 10, 10))))
+                                        .addGap(41, 41, 41))))
                             .addComponent(jSeparator1))
                         .addContainerGap(72, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -211,7 +204,6 @@ public class HelpFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
